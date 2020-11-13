@@ -30,11 +30,16 @@ export class App extends Component {
         this.props.fetchDashboards()
         this.props.setControlBarRows()
         this.props.setShowDescription()
-        this.props.setDimensions(this.props.d2)
+        this.props.setDimensions()
     }
 
     getChildContext() {
-        return { baseUrl: this.props.baseUrl, i18n, d2: this.props.d2 }
+        return {
+            baseUrl: this.props.baseUrl,
+            i18n,
+            d2: this.props.d2,
+            dataEngine: this.props.dataEngine,
+        }
     }
 
     render() {
@@ -101,12 +106,14 @@ App.propTypes = {
     setShowDescription: PropTypes.func.isRequired,
     baseUrl: PropTypes.string,
     d2: PropTypes.object,
+    dataEngine: PropTypes.object,
 }
 
 App.childContextTypes = {
     baseUrl: PropTypes.string,
     i18n: PropTypes.object,
     d2: PropTypes.object,
+    dataEngine: PropTypes.object,
 }
 
 const mapDispatchToProps = dispatch => {
@@ -114,7 +121,7 @@ const mapDispatchToProps = dispatch => {
         fetchDashboards: () => dispatch(tFetchDashboards()),
         setControlBarRows: () => dispatch(tSetControlBarRows()),
         setCurrentUser: currentUser => dispatch(acReceivedUser(currentUser)),
-        setDimensions: d2 => dispatch(tSetDimensions(d2)),
+        setDimensions: () => dispatch(tSetDimensions()),
         setShowDescription: () => dispatch(tSetShowDescription()),
     }
 }
