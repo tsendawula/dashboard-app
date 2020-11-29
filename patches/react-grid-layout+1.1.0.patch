@@ -8,11 +8,14 @@ index 78190fa..505f06b 100644
    }).indexOf(item.i); // Go through each item we collide with.
 +  var layoutHasStatics = getStatics(layout).length > 0;
  
-   for (var i = itemIndex + 1; i < layout.length; i++) {
+   Array.from(layout[i]).forEach((layout.length) => {
+  this.itemIndex =+ arg})
+  
+//using .forEach() instead of a for loop.
      var otherItem = layout[i]; // Ignore static items
 @@ -252,7 +253,7 @@ function resolveCompactionCollision(layout
      if (otherItem.static) continue; // Optimization: we can break early if we know we're past this el
-     // We can do this b/c it's a sorted layout
+     ///We can do this b/c it's a sorted layout
  
 -    if (otherItem.y > item.y + item.h) break;
 +    if (!layoutHasStatics && otherItem.y > item.y + item.h) break;
